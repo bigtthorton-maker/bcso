@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BCSO Roster Board</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+<style>
+body{
+background:#0f172a;
+color:white;
+}
+.column{
+min-height:500px;
+}
+.card{
+cursor:grab;
+}
+</style>
+
+</head>
+
+<body class="p-6">
+
+<h1 class="text-4xl font-bold mb-6 text-center text-yellow-400">
+BCSO Department Roster
+</h1>
+
+<div class="flex gap-6 overflow-x-auto">
+
+<!-- Sheriff -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Sheriff</h2>
+<div class="space-y-3 list" id="sheriff"></div>
+<button onclick="addMember('sheriff')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Undersheriff -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Undersheriff</h2>
+<div class="space-y-3 list" id="undersheriff"></div>
+<button onclick="addMember('undersheriff')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Deputy Chief -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Deputy Chief</h2>
+<div class="space-y-3 list" id="chief"></div>
+<button onclick="addMember('chief')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Major -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Major</h2>
+<div class="space-y-3 list" id="major"></div>
+<button onclick="addMember('major')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Captain -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Captain</h2>
+<div class="space-y-3 list" id="captain"></div>
+<button onclick="addMember('captain')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Lieutenant -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Lieutenant</h2>
+<div class="space-y-3 list" id="lieutenant"></div>
+<button onclick="addMember('lieutenant')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Sergeant -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Sergeant</h2>
+<div class="space-y-3 list" id="sergeant"></div>
+<button onclick="addMember('sergeant')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Corporal -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Corporal</h2>
+<div class="space-y-3 list" id="corporal"></div>
+<button onclick="addMember('corporal')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Senior Deputy -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Senior Deputy</h2>
+<div class="space-y-3 list" id="seniordeputy"></div>
+<button onclick="addMember('seniordeputy')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+<!-- Deputy -->
+<div class="bg-slate-800 p-4 rounded-xl w-64 column">
+<h2 class="text-xl font-bold mb-3 text-yellow-400">Deputy</h2>
+<div class="space-y-3 list" id="deputy"></div>
+<button onclick="addMember('deputy')" class="mt-3 text-sm bg-yellow-500 px-3 py-1 rounded">Add</button>
+</div>
+
+</div>
+
+<script>
+
+function addMember(rank){
+
+let name = prompt("Deputy Name:")
+if(!name) return
+
+let note = prompt("Notes:")
+
+let card = document.createElement("div")
+card.className="card bg-slate-700 p-3 rounded-lg"
+
+card.innerHTML = `
+<div class="font-bold">${name}</div>
+<div class="text-sm text-gray-300">${note || ""}</div>
+`
+
+document.getElementById(rank).appendChild(card)
+
+}
+
+document.querySelectorAll(".list").forEach(list=>{
+new Sortable(list,{
+group:"roster",
+animation:150
+})
+})
+
+</script>
+
+</body>
+</html>
